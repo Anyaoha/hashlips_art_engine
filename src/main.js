@@ -35,13 +35,13 @@ let hashlipsGiffer = null;
 
 const buildSetup = () => {
   if (fs.existsSync(buildDir)) {
-    fs.rmdirSync(buildDir, { recursive: true });
-  }
+    fs.rmSync(buildDir, { recursive: true }); // (node:32868) [DEP0147] DeprecationWarning: In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead
+  }                                           // Hence I change fs.rmdirSync(buildDir, { recursive: true })  TO     fs.rmSync(buildDir, { recursive: true }) in line 38
   fs.mkdirSync(buildDir);
   fs.mkdirSync(`${buildDir}/json`);
   fs.mkdirSync(`${buildDir}/images`);
   if (gif.export) {
-    fs.mkdirSync(`${buildDir}/gifs`);
+    fs.mkdirSync(`${buildDir}/gifs`); // 
   }
 };
 
